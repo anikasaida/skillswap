@@ -1,8 +1,18 @@
+import HeroSlider from "../components/HeroSlider";
+import PopularSkills from "../components/PopularSkills";
+import TopProviders from "../components/TopProviders";
+import HowItWorks from "../components/HowItWorks";
+import Testimonials from "../components/Testimonials";
+
 const Home = () => {
   return (
-    <div className="text-center text-5xl mt-20">
-      Home Page
-    </div>
+    <>
+      <HeroSlider />
+      <PopularSkills />
+      <TopProviders />
+      <HowItWorks />
+      <Testimonials />
+    </>
   );
 };
 

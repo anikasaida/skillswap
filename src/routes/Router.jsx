@@ -8,6 +8,7 @@ import SkillDetails from "../pages/SkillDetails";
 import ForgotPassword from "../pages/ForgotPassword";
 import UpdateProfile from "../pages/UpdateProfile";
 import ErrorPage from "../pages/ErrorPage";
+import PrivateRoute from "../components/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -27,22 +28,39 @@ const router = createBrowserRouter([
         path: "register",
         element: <Register />,
       },
+
+
       {
-        path: "profile",
-        element: <Profile />,
-      },
-      {
-        path: "skill/:id",
-        element: <SkillDetails />,
-      },
+  path: "profile",
+  element: (
+    <PrivateRoute>
+      <Profile />
+    </PrivateRoute>
+  ),
+},
+
+
+     {
+  path: "skill/:id",
+  element: (
+    <PrivateRoute>
+      <SkillDetails />
+    </PrivateRoute>
+  ),
+},
       {
         path: "forgot-password",
         element: <ForgotPassword />,
       },
+      
       {
-        path: "update-profile",
-        element: <UpdateProfile />,
-      },
+  path: "update-profile",
+  element: (
+    <PrivateRoute>
+      <UpdateProfile />
+    </PrivateRoute>
+  ),
+},
     ],
   },
 ]);

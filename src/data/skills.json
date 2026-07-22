@@ -1,0 +1,74 @@
+[
+  {
+    "skillId": 1,
+    "skillName": "Beginner Guitar Lessons",
+    "providerName": "Alex Martin",
+    "providerEmail": "alex@skillswap.com",
+    "price": 20,
+    "rating": 4.8,
+    "slotsAvailable": 3,
+    "description": "Acoustic guitar classes for complete beginners.",
+    "image": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=600",
+    "category": "Music"
+  },
+  {
+    "skillId": 2,
+    "skillName": "Spoken English",
+    "providerName": "Sara Hossain",
+    "providerEmail": "sara@skillswap.com",
+    "price": 15,
+    "rating": 4.7,
+    "slotsAvailable": 5,
+    "description": "Improve spoken English through practice.",
+    "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600",
+    "category": "Language"
+  },
+  {
+    "skillId": 3,
+    "skillName": "Web Development",
+    "providerName": "John Doe",
+    "providerEmail": "john@gmail.com",
+    "price": 35,
+    "rating": 5,
+    "slotsAvailable": 2,
+    "description": "HTML CSS JavaScript React.",
+    "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600",
+    "category": "Programming"
+  },
+  {
+    "skillId": 4,
+    "skillName": "Yoga Basics",
+    "providerName": "Emma",
+    "providerEmail": "emma@gmail.com",
+    "price": 18,
+    "rating": 4.6,
+    "slotsAvailable": 6,
+    "description": "Healthy lifestyle with yoga.",
+    "image": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600",
+    "category": "Fitness"
+  },
+  {
+    "skillId": 5,
+    "skillName": "Photography",
+    "providerName": "David",
+    "providerEmail": "david@gmail.com",
+    "price": 30,
+    "rating": 4.9,
+    "slotsAvailable": 4,
+    "description": "Learn DSLR photography.",
+    "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=600",
+    "category": "Photography"
+  },
+  {
+    "skillId": 6,
+    "skillName": "Cooking Masterclass",
+    "providerName": "Sophia",
+    "providerEmail": "sophia@gmail.com",
+    "price": 25,
+    "rating": 4.8,
+    "slotsAvailable": 7,
+    "description": "Cook delicious homemade food.",
+    "image": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600",
+    "category": "Cooking"
+  }
+]
