@@ -6,14 +6,12 @@ import useAuth from "../hooks/useAuth";
 
 const UpdateProfile = () => {
   const { user, updateUserProfile } = useAuth();
-
   const navigate = useNavigate();
 
   const [error, setError] = useState("");
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-
     setError("");
 
     const form = e.target;
@@ -24,7 +22,7 @@ const UpdateProfile = () => {
     try {
       await updateUserProfile(name, photo);
 
-      toast.success("Profile Updated Successfully");
+      toast.success("Profile Updated Successfully 🎉");
 
       navigate("/profile");
     } catch (err) {
@@ -33,41 +31,59 @@ const UpdateProfile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-700 to-purple-700 flex justify-center items-center p-6">
-
-      <div className="w-full max-w-md bg-white/10 backdrop-blur-lg border border-white/20 rounded-3xl shadow-2xl p-8">
-
-        <h2 className="text-5xl font-bold text-center text-white">
+    <div
+      className="min-h-screen flex items-center justify-center px-4 py-10"
+      style={{
+        background:
+          "linear-gradient(135deg,#2563eb 0%,#4f46e5 50%,#7c3aed 100%)",
+      }}
+    >
+      <div
+        className="w-full max-w-md rounded-3xl p-8"
+        style={{
+          background: "rgba(255,255,255,.12)",
+          backdropFilter: "blur(18px)",
+          border: "1px solid rgba(255,255,255,.2)",
+          boxShadow: "0 20px 40px rgba(0,0,0,.25)",
+        }}
+      >
+        <h2 className="text-4xl font-bold text-center text-white">
           Update Profile
         </h2>
 
         <p className="text-center text-gray-200 mt-2 mb-8">
-          Update your personal information
+          Update your information
         </p>
 
         <form onSubmit={handleUpdate} className="space-y-5">
 
-          <label className="input input-bordered flex items-center gap-2 bg-white/10 text-white">
-            <FaUser />
+          {/* Name */}
+          <div className="relative">
+            <FaUser className="absolute left-4 top-4 text-gray-300" />
+
             <input
               type="text"
               name="name"
-              defaultValue={user?.displayName}
+              defaultValue={user?.displayName || ""}
               placeholder="Your Name"
-              className="grow bg-transparent"
+              required
+              className="w-full pl-12 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-300 outline-none"
             />
-          </label>
+          </div>
 
-          <label className="input input-bordered flex items-center gap-2 bg-white/10 text-white">
-            <FaImage />
+          {/* Photo URL */}
+          <div className="relative">
+            <FaImage className="absolute left-4 top-4 text-gray-300" />
+
             <input
-              type="text"
+              type="url"
               name="photo"
-              defaultValue={user?.photoURL}
+              defaultValue={user?.photoURL || ""}
               placeholder="Photo URL"
-              className="grow bg-transparent"
+              required
+              className="w-full pl-12 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-300 outline-none"
             />
-          </label>
+          </div>
 
           {error && (
             <p className="text-red-300 text-sm">
@@ -75,14 +91,19 @@ const UpdateProfile = () => {
             </p>
           )}
 
-          <button className="btn w-full bg-gradient-to-r from-blue-500 to-purple-600 border-0 text-white text-lg hover:scale-105 transition">
+          <button
+            type="submit"
+            className="w-full py-4 rounded-xl font-bold text-white transition hover:scale-105"
+            style={{
+              background:
+                "linear-gradient(to right,#3b82f6,#7c3aed)",
+            }}
+          >
             Save Changes
           </button>
 
         </form>
-
       </div>
-
     </div>
   );
 };

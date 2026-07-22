@@ -1,14 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SkillCard from "./SkillCard";
+import skillsData from "../data/skills.json";
 
 const PopularSkills = () => {
-  const [skills, setSkills] = useState([]);
-
-  useEffect(() => {
-    fetch("/skills.json")
-      .then((res) => res.json())
-      .then((data) => setSkills(data));
-  }, []);
+  const [skills] = useState(skillsData);
 
   return (
     <section className="max-w-7xl mx-auto py-16 px-5">

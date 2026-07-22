@@ -10,24 +10,43 @@ const Navbar = () => {
       .then(() => {
         toast.success("Logged Out Successfully");
       })
-      .catch(() => {});
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   const navLinks = (
-    <>
-      <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
+  <>
+    <li>
+      <NavLink to="/">Home</NavLink>
+    </li>
 
-      <li>
-        <NavLink to="/profile">My Profile</NavLink>
-      </li>
-    </>
-  );
+    <li>
+      <NavLink to="/all-skills">All Skills</NavLink>
+    </li>
+
+    {user && (
+      <>
+        <li>
+          <NavLink to="/add-skill">Add Skill</NavLink>
+        </li>
+
+        <li>
+          <NavLink to="/my-skills">My Skills</NavLink>
+        </li>
+
+        <li>
+          <NavLink to="/profile">My Profile</NavLink>
+        </li>
+      </>
+    )}
+  </>
+);
 
   return (
-    <div className="navbar bg-base-100 shadow-lg px-5 sticky top-0 z-50">
+    <div className="navbar bg-base-100 shadow-lg sticky top-0 z-50 px-5">
 
+      {/* Left */}
       <div className="navbar-start">
 
         <div className="dropdown">
@@ -51,13 +70,14 @@ const Navbar = () => {
 
         <Link
           to="/"
-          className="text-3xl font-extrabold text-indigo-600"
+          className="text-3xl font-bold text-indigo-600"
         >
           SkillSwap
         </Link>
 
       </div>
 
+      {/* Center */}
       <div className="navbar-center hidden lg:flex">
 
         <ul className="menu menu-horizontal px-1">
@@ -66,20 +86,21 @@ const Navbar = () => {
 
       </div>
 
+      {/* Right */}
       <div className="navbar-end gap-3">
 
         {user ? (
           <>
             <div
               className="tooltip tooltip-bottom"
-              data-tip={user.displayName}
+              data-tip={user.displayName || "User"}
             >
               <img
                 src={
                   user.photoURL ||
                   "https://i.ibb.co/4pDNDk1/avatar.png"
                 }
-                alt=""
+                alt="User"
                 className="w-11 h-11 rounded-full border-2 border-indigo-500 object-cover"
               />
             </div>

@@ -1,61 +1,99 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import toast from "react-hot-toast";
+import skillsData from "../data/skills.json";
 
 const SkillDetails = () => {
   const { id } = useParams();
   const [skill, setSkill] = useState(null);
 
   useEffect(() => {
-    fetch("/skills.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const selectedSkill = data.find(
-          (item) => item.skillId === Number(id)
-        );
-        setSkill(selectedSkill);
-      });
+    const selectedSkill = skillsData.find(
+      (item) => item.skillId === Number(id)
+    );
+
+    setSkill(selectedSkill);
   }, [id]);
 
   if (!skill) {
     return (
-      <div className="text-center py-20">
-        <span className="loading loading-spinner loading-lg"></span>
+      <div className="flex justify-center items-center min-h-screen">
+        <span className="loading loading-spinner loading-lg text-primary"></span>
       </div>
     );
   }
 
+  const handleBook = () => {
+    toast.success("Session Booked Successfully!");
+  };
+
   return (
-    <div className="max-w-5xl mx-auto py-16 px-5">
-      <div className="card lg:card-side bg-base-100 shadow-xl">
+    <div className="min-h-screen bg-base-200 py-16 px-5">
+      <div className="max-w-6xl mx-auto">
+        <div className="card lg:card-side bg-base-100 shadow-2xl">
 
-        <figure className="lg:w-1/2">
-          <img
-            src={skill.image}
-            alt={skill.skillName}
-            className="h-full w-full object-cover"
-          />
-        </figure>
+          <figure className="lg:w-1/2">
+            <img
+              src={skill.image}
+              alt={skill.skillName}
+              className="h-full w-full object-cover"
+            />
+          </figure>
 
-        <div className="card-body lg:w-1/2">
-          <h2 className="card-title text-3xl">
-            {skill.skillName}
-          </h2>
+          <div className="card-body lg:w-1/2">
 
-          <p><strong>Provider:</strong> {skill.providerName}</p>
+            <div className="badge badge-primary mb-3">
+              {skill.category}
+            </div>
 
-          <p><strong>Email:</strong> {skill.providerEmail}</p>
+            <h2 className="text-4xl font-bold">
+              {skill.skillName}
+            </h2>
 
-          <p><strong>Category:</strong> {skill.category}</p>
+            <p className="text-gray-500">
+              {skill.description}
+            </p>
 
-          <p><strong>Rating:</strong> ⭐ {skill.rating}</p>
+            <div className="divider"></div>
 
-          <p><strong>Price:</strong> ${skill.price}</p>
+            <div className="space-y-3">
 
-          <p><strong>Available Slots:</strong> {skill.slotsAvailable}</p>
+              <p>
+                👨‍🏫 <span className="font-bold">Provider:</span>{" "}
+                {skill.providerName}
+              </p>
 
-          <p className="mt-4">
-            {skill.description}
-          </p>
+              <p>
+                📧 <span className="font-bold">Email:</span>{" "}
+                {skill.providerEmail}
+              </p>
+
+              <p>
+                ⭐ <span className="font-bold">Rating:</span>{" "}
+                {skill.rating}
+              </p>
+
+              <p>
+                💲 <span className="font-bold">Price:</span> ${skill.price}
+              </p>
+
+              <p>
+                👥 <span className="font-bold">Available Slots:</span>{" "}
+                {skill.slotsAvailable}
+              </p>
+
+            </div>
+
+            <div className="card-actions mt-8">
+              <button
+                onClick={handleBook}
+                className="btn btn-primary w-full"
+              >
+                Book Session
+              </button>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>
