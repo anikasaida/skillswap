@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import MainLayout from "../layouts/MainLayout";
-
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -14,7 +13,6 @@ import AllSkills from "../pages/AllSkills";
 import AddSkill from "../pages/AddSkill";
 import MySkills from "../pages/MySkills";
 import UpdateSkill from "../pages/UpdateSkill";
-
 import PrivateRoute from "../components/PrivateRoute";
 
 const router = createBrowserRouter([

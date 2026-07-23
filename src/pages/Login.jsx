@@ -11,15 +11,16 @@ import {
 } from "react-icons/fa";
 
 const Login = () => {
-  const { auth, googleSignIn, signInUser } = useAuth();
+  const { googleSignIn, signInUser } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
 
+  const from = location.state || "/";
+
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
-  const from = location.state || "/";
+  const [email, setEmail] = useState("");
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -28,7 +29,6 @@ const Login = () => {
 
     const form = e.target;
 
-    const email = form.email.value;
     const password = form.password.value;
 
     signInUser(email, password)
@@ -76,7 +76,6 @@ const Login = () => {
         </p>
 
         <form onSubmit={handleLogin} className="space-y-5">
-          {/* Email */}
           <div>
             <label className="text-white font-semibold mb-2 block">
               Email
@@ -90,12 +89,13 @@ const Login = () => {
                 name="email"
                 placeholder="Enter your email"
                 required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full pl-12 pr-4 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-300 outline-none focus:border-white"
               />
             </div>
           </div>
 
-          {/* Password */}
           <div>
             <label className="text-white font-semibold mb-2 block">
               Password
@@ -122,7 +122,6 @@ const Login = () => {
             </div>
           </div>
 
-          {/* Remember + Forgot */}
           <div className="flex justify-between items-center text-white text-sm">
             <label className="flex gap-2 items-center">
               <input type="checkbox" className="checkbox checkbox-sm" />
@@ -131,6 +130,7 @@ const Login = () => {
 
             <Link
               to="/forgot-password"
+              state={{ email }}
               className="hover:underline"
             >
               Forgot password?
@@ -141,9 +141,8 @@ const Login = () => {
             <p className="text-red-300 text-sm">{error}</p>
           )}
 
-          {/* Login */}
           <button
-            className="w-full py-4 rounded-xl font-bold text-white transition hover:scale-[1.02]"
+            className="w-full py-4 rounded-xl font-bold text-white"
             style={{
               background:
                 "linear-gradient(to right,#3b82f6,#7c3aed)",
@@ -152,7 +151,6 @@ const Login = () => {
             Sign In
           </button>
 
-          {/* Divider */}
           <div className="flex items-center gap-4">
             <div className="flex-1 h-px bg-white/30"></div>
 
@@ -163,17 +161,15 @@ const Login = () => {
             <div className="flex-1 h-px bg-white/30"></div>
           </div>
 
-          {/* Google */}
           <button
             type="button"
             onClick={handleGoogleLogin}
-            className="w-full flex justify-center items-center gap-3 py-4 rounded-xl border border-white/20 bg-white/10 text-white hover:bg-white/20 transition"
+            className="w-full flex justify-center items-center gap-3 py-4 rounded-xl border border-white/20 bg-white/10 text-white hover:bg-white/20"
           >
             <FaGoogle />
             Continue with Google
           </button>
 
-          {/* Register */}
           <p className="text-center text-gray-200 pt-2">
             Don't have an account?{" "}
             <Link
